@@ -3,6 +3,7 @@ import { buildProfile } from "../src/index.js";
 import sample from "../fixtures/bigquery-risk-sample.json" with { type: "json" };
 
 const profile = buildProfile(sample);
+const siteUrl = "https://mizcausevic-dev.github.io/bigquery-query-risk-profiler/";
 const cards = profile.lanes
   .map(
     (lane) => `
@@ -44,7 +45,7 @@ const html = `<!doctype html>
     <section class="hero">
       <div class="eyebrow">BigQuery risk control</div>
       <h1>Expensive queries should have a risk route before scan cost compounds.</h1>
-      <p class="lede">BigQuery Query Risk Profiler turns scan volume, partition hygiene, slot efficiency, PII exposure control, budget guardrails, stale datasets, and unbounded queries into one remediation sequence.</p>
+      <p class="lede">BigQuery Query Risk Profiler turns scan volume, partition hygiene, slot efficiency, PII exposure control, budget guardrails, stale datasets, and unbounded queries into one remediation sequence finance, platform, analytics, and privacy leaders can use together.</p>
       <div class="metrics">
         <div class="metric"><strong>${profile.summary.laneCount}</strong><span>Query lanes</span></div>
         <div class="metric"><strong>${profile.summary.meanRiskControlScore}</strong><span>Mean control</span></div>
@@ -62,14 +63,14 @@ const html = `<!doctype html>
       <div class="section-head">
         <div>
           <div class="section-kicker">Executive intelligence product</div>
-          <h2>What this does</h2>
+          <h2>Product depth</h2>
         </div>
         <p class="summary">This product gives finance, platform, and analytics leaders a shared way to see which query lanes are burning money, creating compliance exposure, or slowing the warehouse before the issue becomes another vague cloud-cost complaint.</p>
       </div>
       <div class="grid three">
-        <article class="card"><div class="top"><span>GTM analyst lens</span></div><h3>Connects the signal to a commercial decision.</h3><p>Makes data-platform waste explainable in business terms: budget pressure, scan volume, PII exposure, owner routing, and time-to-remediation.</p></article>
-        <article class="card"><div class="top"><span>SaaS value lens</span></div><h3>Turns operational noise into investable remediation.</h3><p>Turns query cleanup into recoverable margin, lower risk, and a ranked backlog instead of an engineering-only optimization exercise.</p></article>
-        <article class="card"><div class="top"><span>Technical proof</span></div><h3>Keeps the calculation inspectable and safe.</h3><p>Uses fixture-backed scoring for scan cost, partition hygiene, slot efficiency, budget guardrails, stale datasets, and unbounded queries.</p></article>
+        <article class="card"><div class="top"><span>Buyer value</span></div><h3>Connects the signal to a commercial decision.</h3><p>Makes data-platform waste explainable in business terms: budget pressure, scan volume, PII exposure, owner routing, and time-to-remediation.</p></article>
+        <article class="card"><div class="top"><span>Technical proof</span></div><h3>Keeps the calculation inspectable and safe.</h3><p>Uses fixture-backed scoring for scan cost, partition hygiene, slot efficiency, budget guardrails, stale datasets, unbounded queries, and owner attribution.</p></article>
+        <article class="card"><div class="top"><span>GTM story</span></div><h3>Turns operational noise into investable remediation.</h3><p>Positions BigQuery governance as recoverable margin, lower risk, and data-trust infrastructure instead of an engineering-only optimization exercise.</p></article>
       </div>
       <div class="pill-list" aria-label="Signal tags"><span class="pill">GCP data cost and risk control</span><span class="pill">board-ready evidence</span><span class="pill">owner routing</span><span class="pill">synthetic proof</span></div>
     </section>
@@ -94,6 +95,11 @@ const html = `<!doctype html>
       <div class="section-kicker">What these repos have in common</div>
       <h2>They convert platform complexity into board-ready operating proof.</h2>
       <p class="summary">The public surface uses synthetic BigQuery risk data only. No production projects, datasets, billing exports, query text, or credentials belong in this repo. The shared Kinetic Gain pattern is consistent: name the buyer pain, expose the evidence trail, produce a reusable artifact, and keep the public surface safe to review.</p>
+      <div class="grid three">
+        <article class="card"><div class="top"><span>Risk signal</span></div><h3>Evidence before opinion.</h3><p>Each lane exposes the concrete query-risk evidence that explains why a buyer, board, or platform leader should care.</p></article>
+        <article class="card"><div class="top"><span>Owner context</span></div><h3>Accountability travels with the metric.</h3><p>Each finding stays tied to an owner, audience, system lane, and business consequence.</p></article>
+        <article class="card"><div class="top"><span>Next action</span></div><h3>The packet resolves into motion.</h3><p>The output names the remediation route so the artifact can become a decision instead of another dashboard screenshot.</p></article>
+      </div>
     </section>
     <footer><span>BigQuery Query Risk Profiler</span><span>·</span><a href="https://portfolio.kineticgain.com/">Portfolio</a><a href="https://kineticgain.com/">Kinetic Gain</a><a href="https://github.com/mizcausevic-dev/bigquery-query-risk-profiler">GitHub</a></footer>
   </main>
@@ -102,3 +108,22 @@ const html = `<!doctype html>
 
 await mkdir("site", { recursive: true });
 await writeFile("site/index.html", html);
+await writeFile(
+  "site/robots.txt",
+  ["User-agent: *", "Allow: /", `Sitemap: ${new URL("sitemap.xml", siteUrl).toString()}`, ""].join("\n")
+);
+await writeFile(
+  "site/sitemap.xml",
+  [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    "  <url>",
+    `    <loc>${siteUrl}</loc>`,
+    `    <lastmod>${new Date().toISOString()}</lastmod>`,
+    "    <changefreq>weekly</changefreq>",
+    "    <priority>0.7</priority>",
+    "  </url>",
+    "</urlset>",
+    ""
+  ].join("\n")
+);

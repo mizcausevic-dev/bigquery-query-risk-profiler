@@ -36,3 +36,27 @@ npx bigquery-query-risk-profiler fixtures/bigquery-risk-sample.json --format jso
 ## Kinetic Gain fit
 
 This adds a GCP data-platform governance lane to the Kinetic Gain portfolio: BigQuery scan-cost control, privacy-safe query routing, partition hygiene, slot efficiency, and owner-readable remediation.
+
+## Product depth
+
+BigQuery Query Risk Profiler is not a console replacement. It is an executive operating surface for teams that need to explain why query cost, privacy exposure, and data-platform hygiene matter before they show up as budget overruns, audit gaps, or stalled analytics work.
+
+- **Buyer value:** gives finance, platform, analytics, privacy, and revenue leaders a shared view of which query lanes are creating cost or control pressure.
+- **Technical proof:** uses typed scoring over scan volume, partition hygiene, slot efficiency, PII exposure control, budget guardrails, unbounded query counts, stale datasets, owner attribution, and remediation value.
+- **GTM story:** positions BigQuery governance as margin protection and data-trust infrastructure, not just warehouse tuning.
+
+## What these repos have in common
+
+This repo follows the Kinetic Gain pattern used across the portfolio:
+
+- Turn fragmented operating evidence into one board-readable decision surface.
+- Keep the public artifact safe by using synthetic data, fixtures, and inspectable scoring.
+- Tie every risk signal to an owner, a business audience, a remediation route, and a reusable proof packet.
+- Make the technical implementation useful to engineers while keeping the narrative understandable to non-technical buyers.
+
+## Operating workflow
+
+1. Register BigQuery lanes with owner, audience, project, query hygiene, and remediation value.
+2. Score control posture using transparent weights across cost, privacy, ownership, and operational hygiene.
+3. Sort the riskiest lanes first so leaders see where exposure and savings concentrate.
+4. Export the result as CLI output and a static public proof surface for portfolio review.
